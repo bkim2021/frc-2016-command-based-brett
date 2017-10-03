@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2485.robot;
 
+import org.usfirst.frc.team2485.robot.subsystems.DriveTrain;
+
 import edu.wpi.first.wpilibj.VictorSP;
 
 /**
@@ -24,6 +26,8 @@ public class RobotMap {
 
 	public static SpeedControllerWrapper leftDrive;
 	public static SpeedControllerWrapper rightDrive;
+	
+	public static DriveTrain driveTrain;
 
 	public static void init() {
 
@@ -38,5 +42,6 @@ public class RobotMap {
 		rightDrive = new SpeedControllerWrapper(rightDriveVictorSPs);
 
 		// Constructing subsystems
+		driveTrain = new DriveTrain();
 	}
 }
