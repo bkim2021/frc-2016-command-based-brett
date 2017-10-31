@@ -15,6 +15,8 @@ public class OI {
 	public static Joystick operator;
 	
 	public static final int XBOX_LEFT_Y = 1;
+	public static final int XBOX_LEFT_X = 2;
+	public static final int XBOX_RIGHT_Y = 3;
 	public static final int XBOX_RIGHT_X = 4;
 	
 	void init() {

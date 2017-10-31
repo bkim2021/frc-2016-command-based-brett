@@ -1,9 +1,11 @@
 package org.usfirst.frc.team2485.robot;
 
 import org.usfirst.frc.team2485.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2485.robot.subsystems.Intake;
 import org.usfirst.frc.team2485.robot.subsystems.Shooter;
-import org.usfirst.frc.team2485.util.InvertedAbsoluteEncoder;
+import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -22,7 +24,7 @@ public class RobotMap {
 	// public static int rightMotor = 2;
 
 	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
+	// number and the module. For example you with a range finder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
@@ -32,14 +34,15 @@ public class RobotMap {
 	public static SpeedControllerWrapper leftDrive;
 	public static SpeedControllerWrapper rightDrive;
 	
-	public static Talon leftShooterMotor, rightShooterMotor;
+	public static CANTalon leftShooterMotor, rightShooterMotor;
 	
-	public static Talon[] shooterTalons = new Talon[2];
+	public static CANTalon[] shooterTalons = new CANTalon[2];
 	public static SpeedControllerWrapper shooterMotors;
 	
 	public static Solenoid upperSolenoid;
 	public static Solenoid lowerSolenoid;
 	
+	public static Intake intakeArm;
 	public static DriveTrain driveTrain;
 	public static Shooter shooter;
 
@@ -62,10 +65,10 @@ public class RobotMap {
 		rightDriveVictorSPs = new VictorSP[] { new VictorSP(5), new VictorSP(6), new VictorSP(7) };
 		leftDriveVictorSPs = new VictorSP[] { new VictorSP(2), new VictorSP(3), new VictorSP(4) };
 		
-		leftShooterMotor = new Talon(3);
-		rightShooterMotor = new Talon(2);
+		leftShooterMotor = new CANTalon(3);
+		rightShooterMotor = new CANTalon(2);
 		
-		shooterTalons = new Talon[] { leftShooterMotor, rightShooterMotor };
+		shooterTalons = new CANTalon[] { leftShooterMotor, rightShooterMotor };
 
 		leftDrive = new SpeedControllerWrapper(leftDriveVictorSPs);
 		rightDrive = new SpeedControllerWrapper(rightDriveVictorSPs);
@@ -76,11 +79,13 @@ public class RobotMap {
 		upperSolenoid = new Solenoid(5);
 		lowerSolenoid = new Solenoid(4);
 		
+		absEncoder = new InvertedAbsoluteEncoder(new AnalogPotentiometer(0));
+		
 		shooterMotors = new SpeedControllerWrapper(shooterTalons);
+		
 		// Constructing subsystems
 		driveTrain = new DriveTrain();
 		shooter = new Shooter();
-		
-		//---//
+		intakeArm = new Intake();
 	}
 }
